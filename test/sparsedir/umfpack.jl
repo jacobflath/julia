@@ -89,3 +89,13 @@ for T in (BigFloat, Complex{BigFloat})
     @test_throws ArgumentError lufact(sparse(ones(T, 1, 1)))
 end
 
+#size(::UmfpackLU)
+let
+    m = n = 1
+    F = lufact(sparse(ones(m, n)))
+    @test size(F) == (m, n)
+    @test size(F, 1) == m
+    @test size(F, 2) == n
+    @test size(F, 3) == 1
+end
+
